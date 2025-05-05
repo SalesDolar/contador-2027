@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contagem Regressiva até 2027</title>
+    <title>Cronograma da Libertação Familiar - 1 de Janeiro de 2027</title>
     <style>
         * {
             margin: 0;
@@ -180,7 +180,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Jornada até 2027</h1>
+        <h1>Cronograma da Libertação Familiar - 1 de Janeiro de 2027</h1>
         
         <div class="date-display" id="today-date"></div>
 
@@ -190,8 +190,8 @@
                 <div class="countdown-label">Dias</div>
             </div>
             <div class="countdown-segment">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Horas</div>
+                <div class="countdown-number" id="total-hours">00</div>
+                <div class="countdown-label">Horas Totais</div>
             </div>
             <div class="countdown-segment">
                 <div class="countdown-number" id="minutes">00</div>
@@ -215,47 +215,6 @@
         // Data de destino: 01/01/2027
         const targetDate = new Date('2027-01-01T00:00:00').getTime();
         
-        // Array de frases motivacionais
-        const motivationalQuotes = [
-            { text: "O sucesso é a soma de pequenos esforços repetidos dia após dia.", author: "Robert Collier" },
-            { text: "A persistência é o caminho do êxito.", author: "Charles Chaplin" },
-            { text: "O único lugar onde o sucesso vem antes do trabalho é no dicionário.", author: "Albert Einstein" },
-            { text: "Não é sobre sonhar, é sobre fazer.", author: "Narendra Modi" },
-            { text: "A maior glória em viver não está em nunca cair, mas em nos levantarmos toda vez que caímos.", author: "Nelson Mandela" },
-            { text: "O caminho para realizar seus sonhos pode ser longo, mas vale a pena percorrê-lo.", author: "Paulo Coelho" },
-            { text: "Seu tempo é limitado, então não o desperdice vivendo a vida de outra pessoa.", author: "Steve Jobs" },
-            { text: "Por mais difícil que seja o caminho, nunca deixe de acreditar que você consegue.", author: "Augusto Branco" },
-            { text: "Lute pelos seus sonhos com determinação e paciência, pois o tempo certo de Deus não falha.", author: "Chico Xavier" },
-            { text: "A confiança em si mesmo é o primeiro segredo do sucesso.", author: "Ralph Waldo Emerson" },
-            { text: "A única forma de fazer um ótimo trabalho é amar o que você faz.", author: "Steve Jobs" },
-            { text: "Cada segundo é tempo para mudar tudo para sempre.", author: "Charles Chaplin" },
-            { text: "Motivação é a arte de fazer as pessoas fazerem o que você quer que elas façam porque elas querem fazê-lo.", author: "Dwight D. Eisenhower" },
-            { text: "A distância entre sonhos e realidade chama-se disciplina.", author: "Bernardinho" },
-            { text: "Se você quer um ano de prosperidade, cultive grãos. Se você quer dez anos de prosperidade, cultive árvores. Se você quer cem anos de prosperidade, cultive pessoas.", author: "Provérbio Chinês" },
-            { text: "Não espere por oportunidades, crie você mesmo as suas.", author: "Autor Desconhecido" },
-            { text: "Pequenas mudanças podem fazer uma grande diferença.", author: "Autor Desconhecido" },
-            { text: "O sucesso é a soma de pequenos esforços repetidos dia após dia.", author: "Robert Collier" },
-            { text: "Quanto maior o obstáculo, maior a glória em superá-lo.", author: "Molière" },
-            { text: "Todo progresso acontece fora da zona de conforto.", author: "Michael John Bobak" },
-            { text: "Você nunca sabe que resultados virão da sua ação. Mas se você não fizer nada, não existirão resultados.", author: "Mahatma Gandhi" },
-            { text: "As dificuldades frequentemente preparam pessoas comuns para destinos extraordinários.", author: "C.S. Lewis" },
-            { text: "Não importa a lentidão com que você vá, desde que você não pare.", author: "Confúcio" },
-            { text: "O importante não é o que acontece com você, mas como você reage ao que acontece com você.", author: "Epicteto" },
-            { text: "O sucesso normalmente vem para quem está ocupado demais para procurar por ele.", author: "Henry David Thoreau" },
-            { text: "A coragem não é ausência do medo; é a persistência apesar do medo.", author: "Nelson Mandela" },
-            { text: "O único limite para o nosso amanhã são nossas dúvidas de hoje.", author: "Franklin D. Roosevelt" },
-            { text: "Não é o que você faz de vez em quando, mas o que você faz diariamente que faz diferença.", author: "Jenny Craig" },
-            { text: "Acredite que você pode e você está no meio do caminho.", author: "Theodore Roosevelt" },
-            { text: "O objetivo principal da vida financeira é ter paz de espírito.", author: "Suze Orman" },
-            { text: "Não trabalhe apenas pelo dinheiro; trabalhe para trazer valor para o mundo.", author: "Autor Desconhecido" },
-            { text: "Economizar é a base da independência financeira.", author: "Robert T. Kiyosaki" },
-            { text: "Concentre-se em criar valor, não em acumular riqueza.", author: "Warren Buffett" },
-            { text: "Uma meta sem um plano é apenas um desejo.", author: "Antoine de Saint-Exupéry" },
-            { text: "Nunca é tarde demais para ser o que você poderia ter sido.", author: "George Eliot" },
-            { text: "O preço do sucesso é trabalho duro, dedicação e determinação.", author: "Vince Lombardi" },
-            { text: "As oportunidades não acontecem, você as cria.", author: "Chris Grosser" }
-        ];
-
         // Atualizar a contagem regressiva
         function updateCountdown() {
             const current = new Date().getTime();
@@ -263,28 +222,39 @@
 
             // Cálculo dos valores
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const totalHours = Math.floor(diff / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
             // Atualização dos elementos
             document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('total-hours').innerHTML = totalHours.toString().padStart(3, '0');
             document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
             document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
         }
 
         // Gerar uma citação com base no dia do ano
         function setDailyQuote() {
+            const motivationalQuotes = [
+                { text: "O sucesso é a soma de pequenos esforços repetidos dia após dia.", author: "Robert Collier" },
+                { text: "A persistência é o caminho do êxito.", author: "Charles Chaplin" },
+                { text: "O único lugar onde o sucesso vem antes do trabalho é no dicionário.", author: "Albert Einstein" },
+                { text: "Não é sobre sonhar, é sobre fazer.", author: "Narendra Modi" },
+                { text: "A maior glória em viver não está em nunca cair, mas em nos levantarmos toda vez que caímos.", author: "Nelson Mandela" },
+                { text: "O caminho para realizar seus sonhos pode ser longo, mas vale a pena percorrê-lo.", author: "Paulo Coelho" },
+                { text: "Seu tempo é limitado, então não o desperdice vivendo a vida de outra pessoa.", author: "Steve Jobs" },
+                { text: "Por mais difícil que seja o caminho, nunca deixe de acreditar que você consegue.", author: "Augusto Branco" },
+                { text: "Lute pelos seus sonhos com determinação e paciência, pois o tempo certo de Deus não falha.", author: "Chico Xavier" },
+                { text: "A confiança em si mesmo é o primeiro segredo do sucesso.", author: "Ralph Waldo Emerson" }
+            ];
+
             const now = new Date();
             const start = new Date(now.getFullYear(), 0, 0);
             const diff = now - start;
             const oneDay = 1000 * 60 * 60 * 24;
             const dayOfYear = Math.floor(diff / oneDay);
-            
-            // Usar o dia do ano para escolher uma citação
             const index = dayOfYear % motivationalQuotes.length;
-            
+
             document.getElementById('quote-text').textContent = `"${motivationalQuotes[index].text}"`;
             document.getElementById('quote-author').textContent = `- ${motivationalQuotes[index].author}`;
         }
